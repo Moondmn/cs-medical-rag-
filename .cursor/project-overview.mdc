@@ -1,0 +1,28 @@
+---
+description: Core project context and conventions for rag-uni-a1
+alwaysApply: true
+---
+
+# rag-uni-a1
+
+Breast-cancer RAG repo. Python 3.12+, managed with **uv** (`uv sync`, `uv run`).
+
+## Layout
+
+- `playground/imp1/` — production RAG ingestion → `output/parsed/<stem>/chunks.jsonl`
+- `playground/ingest/` — Docling experiments (`docling-a1.py`, `docling-medical-a1.py`, etc.)
+- `papers/test_ingest/` — sample PDFs for ingest scripts
+- `data/pdfs/` — default input for `imp1`
+- `output/` — generated artifacts (gitignored)
+
+## Conventions
+
+- Use `uv run python …` for all scripts; venv is `.venv/`.
+- Repo root: `Path(__file__).resolve().parents[N]` — `imp1` uses `parents[2]`.
+- Docling pipelines are slow (formula enrichment, VLM). Keep **docling** logger at INFO so progress is visible.
+- Prefer editing `playground/imp1/config.py` for pipeline toggles over scattering magic values.
+- Minimize scope: match existing style in `parse_pdfs.py` / `ingest_utils.py`.
+
+## Do not commit
+
+`.venv/`, `output/`, secrets (`.env`, `HF_TOKEN` values).

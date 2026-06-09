@@ -1,0 +1,51 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "uv: sync",
+      "type": "shell",
+      "command": "uv sync",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "docling: download models",
+      "type": "shell",
+      "command": "uv run docling-tools models download",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "imp1: ingest (test_ingest)",
+      "type": "shell",
+      "command": "uv run python playground/imp1/ingest.py --pdf-dir ./papers/test_ingest/",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "imp1: ingest (default data/pdfs)",
+      "type": "shell",
+      "command": "uv run python playground/imp1/ingest.py",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "ingest: docling-a1",
+      "type": "shell",
+      "command": "uv run python playground/ingest/docling-a1.py",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

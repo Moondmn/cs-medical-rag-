@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "imp1: ingest (test_ingest)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/playground/imp1/ingest.py",
+      "args": ["--pdf-dir", "./papers/test_ingest/"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "HF_HUB_DISABLE_SYMLINKS_WARNING": "1",
+        "TRANSFORMERS_VERBOSITY": "error"
+      }
+    },
+    {
+      "name": "imp1: preview chunks",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/playground/imp1/ingest.py",
+      "args": [
+        "--preview",
+        "output/parsed/BC_Validation_2019/chunks.jsonl"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "ingest: docling-a1",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/playground/ingest/docling-a1.py",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "HF_HUB_DISABLE_SYMLINKS_WARNING": "1",
+        "TRANSFORMERS_VERBOSITY": "error"
+      }
+    },
+    {
+      "name": "Python: current file",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

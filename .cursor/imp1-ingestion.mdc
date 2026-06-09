@@ -1,0 +1,28 @@
+---
+description: imp1 RAG ingestion pipeline conventions
+globs: playground/imp1/**
+alwaysApply: false
+---
+
+# imp1 ingestion
+
+Entry point: `playground/imp1/ingest.py` → `parse_pdfs.run_ingestion()`.
+
+## Config (`config.py`)
+
+- `PDF_DIR` → `data/pdfs/`, `OUTPUT_DIR` → `output/parsed/`
+- `PIPELINE_USE_OCR`, `PIPELINE_IMAGES_SCALE`, `SECTION_LABEL_MAP`
+
+## Outputs per paper
+
+`chunks.jsonl` (RAG input), `document.md`, `tables.json`, `formulas.json`, `pictures.json`, `document.json`, `artifacts/{pages,pictures,tables}/`.
+
+## chunks.jsonl schema
+
+Each line: `doc_id`, `source_file`, `title`, `authors`, `doi`, `chunk_type` (`text`|`table`|`formula`|`figure`), `section`, `text`, plus type-specific fields.
+
+## Pipeline notes
+
+- OCR chain: EasyOCR → RapidOCR → Tesseract → OcrAuto (`parse_pdfs._ocr_options`).
+- Fresh `DocumentConverter` per PDF (see `docling-medical-a1.py`).
+- Do **not** suppress `logging.getLogger("docling")` — long converts look stuck without it.

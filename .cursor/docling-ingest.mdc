@@ -1,0 +1,29 @@
+---
+description: Docling ingest scripts under playground/ingest
+globs: playground/ingest/**
+alwaysApply: false
+---
+
+# playground/ingest
+
+Shared helpers: `ingest_utils.py` (tables, formulas, pictures, markdown placeholders).
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `docling-a1.py` | SmolVLM captions + confidence grades → `output/ingest/` |
+| `docling-medical-a1.py` | Medical parse baseline (no chunking) |
+| `docling_parse_pdf.py` | Lower-level PDF → pages API |
+| `mineru-a1.py` | MinerU alternative backend |
+
+## docling-a1.py caveats
+
+- Hard-coded `papers/test_ingest/` input, `output/ingest/` output.
+- Currently processes first PDF only (`break` in `main`) and `page_range=(5, 7)` — document when changing behavior.
+
+## Docling patterns
+
+- Set `HF_HUB_DISABLE_SYMLINKS_WARNING` and `TRANSFORMERS_VERBOSITY` before imports.
+- GPU: `AcceleratorDevice.CUDA if torch.cuda.is_available() else CPU`.
+- Prefetch models: `uv run docling-tools models download`.

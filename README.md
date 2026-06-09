@@ -27,6 +27,13 @@ export HF_TOKEN=hf_...
 
 OCR fallback chain (used by `imp1`): EasyOCR → RapidOCR → Tesseract CLI. RapidOCR is included via Docling; install EasyOCR or Tesseract only if you want a different engine.
 
+### Editor setup (Cursor / VS Code)
+
+- **`.vscode/`** — Python interpreter (`.venv`), recommended extensions, run/debug configs, and tasks (`uv sync`, `imp1` ingest, `docling-a1`).
+- **`.cursor/rules/`** — project rules for the AI agent (layout, `imp1` pipeline, Docling ingest scripts).
+
+Open the repo in Cursor or VS Code, run **Tasks: Run Task → uv: sync**, then use **Run and Debug** or the terminal tasks.
+
 ---
 
 ## `playground/imp1` — RAG ingestion pipeline
